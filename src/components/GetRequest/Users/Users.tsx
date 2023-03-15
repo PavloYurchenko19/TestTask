@@ -27,7 +27,13 @@ const Users: FC<{ refetch: boolean }> = ({refetch}) => {
   useEffect(() => {
     (async () => {
       try {
-
+        const data = await testTaskService.getUsers(dataReq)
+        setTotalPages(data.total_pages)
+        const notDuplicatePerson = Array.from(new Set([...users, ...(data?.users ?? [])]));
+        const uniqueArray = notDuplicatePerson.filter(
+          (item, index, array) => index === array.findIndex(obj => obj.id === item.id && obj.name === item.name)
+        );
+        setUsers(uniqueArray)
       } catch (e: unknown) {
         if (e instanceof Error) {
           toast.error(e.message)
@@ -35,14 +41,7 @@ const Users: FC<{ refetch: boolean }> = ({refetch}) => {
           toast.error('An unknown error occurred:')
         }
       }
-      const data = await testTaskService.getUsers(dataReq)
-      setTotalPages(data.total_pages)
-      const notDuplicatePerson = Array.from(new Set([...users, ...(data?.users ?? [])]));
-      const uniqueArray = notDuplicatePerson.filter(
-        (item, index, array) => index === array.findIndex(obj => obj.id === item.id && obj.name === item.name)
-      );
 
-      setUsers(uniqueArray)
     })()
   }, [dataReq?.page])
 
