@@ -1,0 +1,14 @@
+@mixin df ($content,$contentItems,$dir : row){
+  display: flex;
+  justify-content: $content;
+  align-items: $contentItems;
+  flex-direction: $dir;
+}
+
+@mixin more-text{
+  display:inline-block;
+  width:100%;
+  white-space: nowrap;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
+}

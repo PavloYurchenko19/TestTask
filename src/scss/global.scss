@@ -1,0 +1,15 @@
+@import "colors";
+.button__main{
+  border: none;
+  outline: none;
+  background: $bg-btn;
+  min-width: 100px;
+  min-height: 34px;
+  border-radius: 80px;
+  padding: 4px 29px;
+
+}
+.button__disabled{
+  color: $white;
+  background: $bg-btn-disabled;
+}

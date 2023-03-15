@@ -1,0 +1,19 @@
+@import "scss/null";
+@import "scss/global";
+
+body {
+  font-family: Nunito;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  background-color: $background-color;
+  color: $black87;
+}
+button{
+  cursor: pointer;
+}
+h1 {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 40px;
+}

@@ -1,0 +1,44 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "import",
+    "unused-imports"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "indent": ["error", 2],
+    "no-unused-vars": "warn",
+    "unused-imports/no-unused-imports": "error",
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "no-console": "warn",
+    "endOfLine": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          ["parent", "sibling", "index"]
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
