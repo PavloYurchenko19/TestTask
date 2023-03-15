@@ -7,8 +7,13 @@
     @include df(center,center);
     gap: 10px;
   }
+  @media (max-width: $desktop) {
+    padding: 13px 60px;
+  }
+  @media (max-width: $tablet) {
+    padding: 13px 32px;
+  }
   @media (max-width: 400px) {
     padding: 13px 16px;
-
   }
 }

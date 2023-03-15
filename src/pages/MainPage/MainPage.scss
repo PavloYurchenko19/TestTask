@@ -4,9 +4,11 @@
   max-width: $desktop;
   width: 100%;
   margin: 0 auto;
-  h1{
+
+  h1 {
     text-align: center;
   }
+
   .section {
     &__welcome {
       @include df(center, center);
@@ -27,6 +29,7 @@
         text-align: center;
         color: $white;
         padding: 0 16px;
+
         * {
           z-index: 2;
         }
@@ -57,7 +60,8 @@
           padding: 20px;
           border-radius: 10px;
           @include df(center, center, column);
-          height: 254px;
+          min-height: 254px;
+          height: auto;
           background: $white;
           width: 33%;
           max-width: 370px;
@@ -67,24 +71,33 @@
             width: 100%;
           }
 
-          &_img {
-            width: 70px;
-            height: 70px;
+          &_img-name {
+            width: 100%;
+            @include df(center, center, column);
 
-            img {
-              height: 100%;
+            .user__container_img {
+              width: 70px;
+              height: 70px;
+
+              img {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+            }
+
+            .user__container_name {
+              @include more-text;
               width: 100%;
-              border-radius: 50%;
-              object-fit: cover;
+              margin-top: 20px;
             }
           }
 
-          &_name {
-            @include more-text;
-            width: 100%;
-          }
-
           &_desc {
+            width: 100%;
+            @include df(center, center, column);
+            line-height: 26px;
             .desc__position,
             .desc__email,
             .desc__phone {
@@ -93,7 +106,11 @@
             }
           }
         }
+        @media (max-width: 1168px) {
+          gap: 16px;
+        }
       }
+
       @media (max-width: 700px) {
         padding: 0 16px;
       }
@@ -110,12 +127,15 @@
         width: 100%;
         @include df(center, center, column);
         gap: 50px;
+
         .input__container {
           width: 100%;
+
           &_error {
             color: red;
           }
         }
+
         input {
           border: 1px solid #D0CFCF;
           border-radius: 4px;
@@ -173,27 +193,24 @@
               gap: 12px;
 
               p {
-
                 padding-top: 5px;
-
               }
             }
           }
-          label{
-
-          }
-
         }
+
         .upload-file__container {
           @include df(center, center);
           width: 100%;
-          input{
+
+          input {
             cursor: pointer;
             opacity: 0;
             position: absolute;
             width: 380px;
             z-index: 2;
           }
+
           &-left {
             cursor: pointer;
             padding: 14px 15px;
@@ -211,6 +228,7 @@
           }
         }
       }
+
       @media (max-width: 400px) {
         padding: 16px;
       }

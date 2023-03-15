@@ -5,26 +5,30 @@ import {User} from "../../../interface/services/testService";
 import {testTaskService} from "../../../services/testTaskService";
 import {MainButton} from "../../MainButton/MainButton";
 
-const Users: FC<{ refetch:boolean }> = ({refetch}) => {
+const Users: FC<{ refetch: boolean }> = ({refetch}) => {
 
-  const [users,setUsers] =useState<User[]>([])
-  const [totalPages,setTotalPages] =useState<number>(0)
-  const [dataReq,setDataReq] =useState<{page:number, count:number, offset:number}>({page:1,count:6,offset:0})
+  const [users, setUsers] = useState<User[]>([])
+  const [totalPages, setTotalPages] = useState<number>(0)
+  const [dataReq, setDataReq] = useState<{ page: number, count: number, offset: number }>({
+    page: 1,
+    count: 6,
+    offset: 0
+  })
 
-  useEffect(()=>{
-    (async ()=>{
+  useEffect(() => {
+    (async () => {
       dataReq.page = 1
       const data = await testTaskService.getUsers(dataReq)
       setUsers(data.users)
       setTotalPages(data.total_pages)
     })()
-  },[refetch])
+  }, [refetch])
 
-  useEffect(()=>{
-    (async ()=>{
+  useEffect(() => {
+    (async () => {
       try {
 
-      }catch (e: unknown) {
+      } catch (e: unknown) {
         if (e instanceof Error) {
           toast.error(e.message)
         } else {
@@ -40,13 +44,13 @@ const Users: FC<{ refetch:boolean }> = ({refetch}) => {
 
       setUsers(uniqueArray)
     })()
-  },[dataReq?.page])
+  }, [dataReq?.page])
 
   function handleShowMore() {
     setDataReq(prevData => {
       const nextPage = prevData.page + 1;
       const newOffset = (nextPage * 6);
-      return { ...prevData, page: nextPage, offset: newOffset };
+      return {...prevData, page: nextPage, offset: newOffset};
     });
   }
 
@@ -56,12 +60,14 @@ const Users: FC<{ refetch:boolean }> = ({refetch}) => {
       <div className="section__get_users">
         {
           !!users?.length && users.map(value => {
-            return(
+            return (
               <div key={value.id} className="user__container">
-                <div className="user__container_img">
-                  <img src={value?.photo} alt={value?.name}/>
+                <div className="user__container_img-name">
+                  <div className="user__container_img">
+                    <img src={value?.photo} alt={value?.name}/>
+                  </div>
+                  <div className="user__container_name">{value?.name}</div>
                 </div>
-                <div className="user__container_name">{value?.name}</div>
                 <div className="user__container_desc">
                   <div className="desc__position">{value?.position}</div>
                   <div className="desc__email">{value?.email}</div>
@@ -72,9 +78,12 @@ const Users: FC<{ refetch:boolean }> = ({refetch}) => {
           })
         }
       </div>
-      {totalPages !== dataReq.page  ? <MainButton text="Show more" callback={()=>{handleShowMore()}}/> : ''}
+      {totalPages !== dataReq.page  ? <MainButton text="Show more" callback={() => {
+        handleShowMore()
+      }}/> : ''}
     </>
   );
-};
+}
+    ;
 
 export {Users};
